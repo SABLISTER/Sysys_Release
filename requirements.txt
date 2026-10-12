@@ -1,0 +1,57 @@
+# ═══════════════════════════════════════════════════════════════════
+# SystS — Systematic Review Pipeline
+# ═══════════════════════════════════════════════════════════════════
+#
+# Install:  pip install -r requirements.txt
+#
+# Single-sourcing note: the runtime list below mirrors
+# `[project] dependencies` in pyproject.toml, and the dev tools at the
+# bottom mirror `[project.optional-dependencies] dev`. Keep them in sync —
+# pyproject.toml is the canonical source.
+#
+# For a minimal install (no GUI, no optional analytics):
+#   pip install numpy pandas scipy httpx pyyaml rapidfuzz
+#
+
+# ── Core (required for all pipeline stages) ──────────────────────
+numpy>=1.24
+pandas>=2.0
+scipy>=1.11
+httpx>=0.24
+requests>=2.31
+pyyaml>=6.0
+rapidfuzz>=3.0
+
+# ── GUI (PySide6 desktop application) ────────────────────────────
+PySide6>=6.5
+matplotlib>=3.7
+
+# ── LLM providers (install the ones you use) ─────────────────────
+openai>=1.0
+anthropic>=0.20
+ollama>=0.6                      # optional local Ollama backend
+
+# ── Machine learning & NLP ───────────────────────────────────────
+scikit-learn>=1.4               # >=1.4 for root_mean_squared_error()
+sentence-transformers>=2.2      # embeddings for clustering (TF-IDF fallback exists)
+tomotopy>=0.13                  # citation sLDA topic modeling
+
+# ── Network analysis ─────────────────────────────────────────────
+networkx>=3.1                   # graph algorithms
+python-louvain>=0.16            # Louvain community detection
+
+# ── PDF & fulltext extraction ────────────────────────────────────
+PyMuPDF>=1.23                   # fitz — fast PDF text extraction
+PyPDF2>=3.0                     # fallback PDF reader
+beautifulsoup4>=4.12            # HTML parsing for fulltext
+paper-qa>=5.0                   # optional PaperQA2 full-text RAG database
+
+# ── Training scripts (scripts/*.py — not needed for the GUI app) ─
+pyarrow>=14.0                   # Arrow shard reading (train_dr_brt_bert.py)
+datasets>=2.14                  # HF datasets (train_relevance_crossencoder.py)
+python-dotenv>=1.0               # .env loading for hard_mode app
+
+# ── Dev & testing ────────────────────────────────────────────────
+pytest>=8.0
+pyright>=1.1                    # static type checking
+pandas-stubs>=3.0               # precise pandas types for pyright

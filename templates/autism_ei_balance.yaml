@@ -1,0 +1,184 @@
+# Sysys Research Configuration - Autism E/I Balance Template
+#
+# Archived current-schema version of the prior active autism/E-I review config.
+
+name: "asd-ei-imbalance"
+description: >
+  How does excitatory/inhibitory (E/I) imbalance in autism spectrum disorder
+  affect neural criticality and network dynamics, and how does this relate to
+  co-occurring conditions?
+
+hypothesis_text: >
+  Autism is influenced by network effects stemming from an imbalance between
+  excitatory and inhibitory functions along the functional pathways that connect
+  co-occurring conditions.
+
+co_occurring_conditions:
+  - anxiety
+  - ADHD
+  - epilepsy
+  - sensory processing
+  - executive function
+  - OCD
+
+alignment_dimension: "E/I imbalance -> network criticality disruption -> functional pathway dysregulation"
+
+search:
+  base_terms:
+    - "autism"
+    - "ASD"
+    - "autism spectrum"
+    - "autism spectrum disorder"
+  domains:
+    - name: "E/I imbalance + criticality"
+      terms:
+        - "excitatory inhibitory"
+        - "E/I imbalance"
+        - "excitation inhibition balance"
+        - "neural criticality"
+        - "GABAergic"
+    - name: "Network topology + white matter"
+      terms:
+        - "white matter"
+        - "structural connectivity"
+        - "connectome"
+        - "diffusion tensor"
+      require_also:
+        - "network"
+        - "topology"
+        - "tract"
+    - name: "Comorbidity cascade"
+      terms:
+        - "comorbid"
+        - "co-occurring"
+        - "cooccurring"
+      require_also:
+        - "ADHD"
+        - "anxiety"
+        - "OCD"
+        - "sensory processing"
+        - "executive function"
+        - "epilepsy"
+    - name: "Criticality theory"
+      terms:
+        - "criticality"
+        - "critical brain"
+        - "edge of chaos"
+        - "power law"
+        - "scale-free"
+      require_also:
+        - "neurodevelopmental"
+    - name: "Transdiagnostic / dimensional"
+      terms:
+        - "transdiagnostic"
+        - "dimensional"
+        - "network neuroscience"
+      require_also:
+        - "network"
+        - "circuit"
+
+relevance:
+  threshold: 3
+  research_question: >
+    How does excitatory/inhibitory (E/I) imbalance in autism spectrum disorder
+    affect neural criticality and network dynamics, and how does this relate to
+    co-occurring conditions through white matter tract topology?
+
+extraction:
+  fields:
+    - name: "findings"
+      type: "list"
+      description: "Empirical findings from the study"
+    - name: "mechanisms"
+      type: "list"
+      description: "Biological mechanisms (GABAergic, glutamate, criticality, etc.)"
+    - name: "conditions"
+      type: "list"
+      description: "Conditions studied (ASD, ADHD, anxiety, epilepsy, etc.)"
+    - name: "brain_regions"
+      type: "list"
+      description: "Brain regions or networks mentioned"
+    - name: "methodology"
+      type: "string"
+      description: "Brief methodology summary"
+    - name: "supports_primary_question"
+      type: "boolean"
+      description: "Does the evidence directly support or inform the configured research question?"
+    - name: "supports_criticality"
+      type: "boolean"
+      description: "Does the evidence support criticality disruption playing a role?"
+    - name: "network_effects_described"
+      type: "boolean"
+      description: "Does the evidence describe network effects?"
+    - name: "comorbidity_link"
+      type: "string"
+      description: "Relationship between autism and co-occurring conditions"
+    - name: "key_quote"
+      type: "string"
+      description: "Single most relevant verbatim sentence from the paper text"
+
+synthesis:
+  n_clusters: 8
+  embedding_model: "all-MiniLM-L6-v2"
+
+graph_analysis:
+  conditions:
+    "Fragile X":
+      - "\\bFragile X\\b"
+      - "\\bFMR1\\b"
+      - "\\bfragile X syndrome\\b"
+    "Rett syndrome":
+      - "\\bRett syndrome\\b"
+      - "\\bRett\\b"
+      - "\\bMECP2\\b"
+    "Epilepsy":
+      - "\\bepilepsy\\b"
+      - "\\bseizure\\b"
+      - "\\bepileptic\\b"
+    "Anxiety":
+      - "\\banxiety\\b"
+      - "\\banxious\\b"
+      - "\\bGAD\\b"
+    "ADHD":
+      - "\\bADHD\\b"
+      - "\\battention.deficit\\b"
+      - "\\bhyperactivity\\b"
+    "Depression":
+      - "\\bdepression\\b"
+      - "\\bdepressive\\b"
+      - "\\bMDD\\b"
+    "OCD":
+      - "\\bOCD\\b"
+      - "\\bobsessive.compulsive\\b"
+    "Sensory Processing":
+      - "\\bsensory processing\\b"
+      - "\\bSPD\\b"
+      - "\\bsensory.over.?responsivity\\b"
+  structural_regions:
+    "Prefrontal Cortex":
+      - "\\bPFC\\b"
+      - "\\bprefrontal\\b"
+    "Amygdala":
+      - "\\bamygdala\\b"
+      - "\\bamygdalar\\b"
+    "Hippocampus":
+      - "\\bhippocampus\\b"
+      - "\\bhippocampal\\b"
+    "Cerebellum":
+      - "\\bcerebellum\\b"
+      - "\\bcerebellar\\b"
+  functional_networks:
+    "Default Mode":
+      - "\\bDMN\\b"
+      - "\\bdefault mode\\b"
+    "Salience":
+      - "\\bsalience network\\b"
+      - "\\bSN\\b"
+    "Central Executive":
+      - "\\bCEN\\b"
+      - "\\bcentral executive\\b"
+      - "\\bfrontoparietal\\b"
+
+# Explicitly select the historical neuroscience heuristic vocabulary.
+defaults:
+  pattern_pack: neuroscience

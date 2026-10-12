@@ -1,0 +1,42 @@
+[project]
+name = "sysys"
+version = "0.1.0"
+description = "Desktop pipeline for LLM-assisted systematic literature reviews and meta-analysis"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "numpy>=1.24",
+    "pandas>=2.0",
+    "scipy>=1.11",
+    "httpx>=0.24",
+    "requests>=2.31",
+    "pyyaml>=6.0",
+    "rapidfuzz>=3.0",
+    "PySide6>=6.5",
+    "matplotlib>=3.7",
+    "openai>=1.0",
+    "anthropic>=0.20",
+    "ollama>=0.6",
+    "scikit-learn>=1.4",
+    "sentence-transformers>=2.2",
+    "tomotopy>=0.13",
+    "networkx>=3.1",
+    "python-louvain>=0.16",
+    "PyMuPDF>=1.23",
+    "PyPDF2>=3.0",
+    "beautifulsoup4>=4.12",
+    "paper-qa>=5.0",
+    "pyarrow>=14.0",
+    "datasets>=2.14",
+    "python-dotenv>=1.0",
+]
+
+# Dev/test tooling. The runtime dependency list above is the single source
+# of truth; requirements.txt mirrors it (plus this dev extra) for
+# `pip install -r` workflows.
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pyright>=1.1",
+    "pandas-stubs>=3.0",
+]

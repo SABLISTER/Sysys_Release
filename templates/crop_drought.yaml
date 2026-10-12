@@ -1,0 +1,24 @@
+# Example of a non-neuroscience review. Load through Settings > Load Config.
+name: crop-drought
+natural_language_question: How does drought affect crop yield through water stress?
+co_occurring_conditions: [drought]
+defaults:
+  pattern_pack: general
+search:
+  base_terms: [drought]
+  domains:
+    - name: Crop yield
+      terms: [crop yield, water stress]
+graph_analysis:
+  entities:
+    Crop yield: ['\byield\b']
+extraction:
+  heuristics:
+    mechanisms: [water stress]
+    methodology_hints: [field experiment]
+method_review:
+  heuristic_rules:
+    - study_method_type: mixed_methods
+      any_terms: [field experiment]
+      all_terms: [interviews]
+      confidence: 0.65

@@ -1,0 +1,168 @@
+# Sysys Research Configuration - Generic Neuroscience Template
+#
+# Current-schema template for broad neuroscience or cognitive neuroscience
+# reviews without autism-specific defaults.
+
+name: "generic-neuroscience-review"
+description: >
+  Broad neuroscience review of relationships among brain structure, function,
+  cognition, behaviour, and clinical or developmental outcomes.
+
+hypothesis_text: >
+  Brain structure and function relate to cognitive, behavioural, or clinical
+  outcomes through identifiable mechanisms and systems-level pathways.
+
+co_occurring_conditions:
+  - depression
+  - anxiety
+  - PTSD
+  - schizophrenia
+  - bipolar disorder
+  - substance use disorder
+
+alignment_dimension: "Brain-system evidence alignment to the research question"
+
+search:
+  base_terms:
+    - "brain"
+    - "neuroscience"
+    - "cognitive neuroscience"
+    - "neurological"
+    - "neuroimaging"
+  domains:
+    - name: "Brain structure and connectivity"
+      terms:
+        - "structural connectivity"
+        - "white matter"
+        - "connectome"
+        - "diffusion MRI"
+    - name: "Functional systems"
+      terms:
+        - "functional connectivity"
+        - "network neuroscience"
+        - "brain network"
+        - "resting state"
+    - name: "Cognition and behaviour"
+      terms:
+        - "cognition"
+        - "behaviour"
+        - "executive function"
+        - "memory"
+        - "attention"
+    - name: "Clinical and developmental outcomes"
+      terms:
+        - "symptoms"
+        - "development"
+        - "disorder"
+        - "transdiagnostic"
+        - "dimensional"
+
+relevance:
+  threshold: 3
+  research_question: >
+    What does the scholarly literature show about relationships among brain
+    structure, function, cognition, behaviour, and clinical or developmental
+    outcomes?
+
+extraction:
+  fields:
+    - name: "findings"
+      type: "list"
+      description: "Empirical findings from the study"
+    - name: "mechanisms"
+      type: "list"
+      description: "Neural, cognitive, behavioural, or clinical mechanisms discussed"
+    - name: "conditions"
+      type: "list"
+      description: "Conditions, populations, or outcome domains studied"
+    - name: "brain_regions"
+      type: "list"
+      description: "Brain regions or networks mentioned"
+    - name: "methodology"
+      type: "string"
+      description: "Brief methodology summary"
+    - name: "supports_primary_question"
+      type: "boolean"
+      description: "Does the evidence directly support or inform the configured research question?"
+    - name: "supports_criticality"
+      type: "boolean"
+      description: "Legacy compatibility field; true only for explicit criticality evidence"
+    - name: "network_effects_described"
+      type: "boolean"
+      description: "Does the evidence describe systems, network, or connectivity effects?"
+    - name: "comorbidity_link"
+      type: "string"
+      description: "Relationship among primary topic, populations, constructs, or contextual factors"
+    - name: "key_quote"
+      type: "string"
+      description: "Single most relevant verbatim sentence from the paper text"
+
+synthesis:
+  n_clusters: 8
+  embedding_model: "all-MiniLM-L6-v2"
+
+graph_analysis:
+  conditions:
+    "Depression":
+      - "\\bdepression\\b"
+      - "\\bmajor depressive\\b"
+      - "\\bMDD\\b"
+    "Anxiety":
+      - "\\banxiety\\b"
+      - "\\banxious\\b"
+      - "\\bGAD\\b"
+    "PTSD":
+      - "\\bPTSD\\b"
+      - "\\bpost.traumatic\\b"
+      - "\\btrauma\\b"
+    "Schizophrenia":
+      - "\\bschizophrenia\\b"
+      - "\\bpsychosis\\b"
+      - "\\bpsychotic\\b"
+    "Bipolar Disorder":
+      - "\\bbipolar\\b"
+      - "\\bmania\\b"
+      - "\\bmanic\\b"
+    "Substance Use":
+      - "\\bsubstance use\\b"
+      - "\\baddiction\\b"
+      - "\\bdependence\\b"
+  structural_regions:
+    "Prefrontal Cortex":
+      - "\\bPFC\\b"
+      - "\\bprefrontal\\b"
+      - "\\bdlPFC\\b"
+      - "\\bvmPFC\\b"
+    "Amygdala":
+      - "\\bamygdala\\b"
+      - "\\bamygdalar\\b"
+    "Hippocampus":
+      - "\\bhippocampus\\b"
+      - "\\bhippocampal\\b"
+    "Insula":
+      - "\\binsula\\b"
+      - "\\binsular cortex\\b"
+    "Anterior Cingulate":
+      - "\\bACC\\b"
+      - "\\banterior cingulate\\b"
+    "Cerebellum":
+      - "\\bcerebellum\\b"
+      - "\\bcerebellar\\b"
+  functional_networks:
+    "Default Mode":
+      - "\\bDMN\\b"
+      - "\\bdefault mode\\b"
+    "Salience":
+      - "\\bsalience network\\b"
+      - "\\bSN\\b"
+    "Central Executive":
+      - "\\bCEN\\b"
+      - "\\bcentral executive\\b"
+      - "\\bfrontoparietal\\b"
+    "Sensorimotor":
+      - "\\bsensorimotor\\b"
+      - "\\bSMN\\b"
+
+# Explicitly select the historical neuroscience heuristic vocabulary.
+defaults:
+  pattern_pack: neuroscience

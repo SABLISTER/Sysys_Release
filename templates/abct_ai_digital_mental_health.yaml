@@ -1,0 +1,303 @@
+# Sysys Research Configuration - ABCT AI Digital Mental Health Brief
+#
+# Focused starter config for an ABCT Technology Committee evidence brief on
+# AI in digital mental health ahead of the June 30, 2026 committee meeting.
+
+name: "abct-ai-digital-mental-health-brief"
+description: >
+  Committee-facing rapid evidence review of artificial intelligence in digital
+  mental health, emphasizing clinical utility, safety, implementation,
+  equity, privacy, and human oversight.
+
+hypothesis_text: >
+  AI-enabled digital mental health tools may improve assessment,
+  personalization, engagement, and access, but committee guidance should weigh
+  clinical efficacy, safety, privacy, equity, implementation burden, and
+  appropriate human oversight.
+
+co_occurring_conditions:
+  - depression
+  - anxiety
+  - PTSD
+  - suicide risk
+  - substance use
+  - youth mental health
+  - serious mental illness
+
+alignment_dimension: >
+  Alignment with ABCT Technology Committee decisions about evidence strength,
+  clinical readiness, safety, equity, privacy, and implementation guidance.
+
+search:
+  base_terms:
+    - "digital mental health"
+    - "mental health app"
+    - "mobile health"
+    - "mHealth"
+    - "internet intervention"
+    - "telehealth mental health"
+  domains:
+    - name: "AI chatbots and conversational agents"
+      terms:
+        - "chatbot"
+        - "conversational agent"
+        - "large language model"
+        - "generative AI"
+        - "therapy bot"
+        - "virtual coach"
+      require_also:
+        - "mental health"
+        - "psychotherapy"
+        - "behavioral health"
+    - name: "Personalization and clinical decision support"
+      terms:
+        - "machine learning"
+        - "prediction model"
+        - "clinical decision support"
+        - "recommender system"
+        - "adaptive intervention"
+        - "just-in-time adaptive intervention"
+      require_also:
+        - "mental health"
+        - "treatment selection"
+        - "personalized intervention"
+    - name: "Assessment monitoring and risk detection"
+      terms:
+        - "digital phenotyping"
+        - "passive sensing"
+        - "symptom monitoring"
+        - "suicide risk prediction"
+        - "ecological momentary assessment"
+        - "wearable sensor"
+      require_also:
+        - "mental health"
+        - "depression"
+        - "anxiety"
+    - name: "Efficacy acceptability and safety"
+      terms:
+        - "randomized controlled trial"
+        - "clinical trial"
+        - "feasibility"
+        - "acceptability"
+        - "adverse events"
+        - "therapeutic alliance"
+      require_also:
+        - "digital mental health"
+        - "AI"
+        - "machine learning"
+    - name: "Equity privacy and implementation"
+      terms:
+        - "algorithmic bias"
+        - "fairness"
+        - "privacy"
+        - "implementation"
+        - "clinician oversight"
+        - "human in the loop"
+      require_also:
+        - "mental health"
+        - "digital health"
+        - "artificial intelligence"
+
+relevance:
+  threshold: 3
+  research_question: >
+    What does current empirical and implementation literature show about the
+    benefits, risks, evidence quality, and clinical readiness of AI-enabled
+    digital mental health tools for assessment, intervention, monitoring, and
+    care support?
+  rubric:
+    0: "No connection to AI, digital tools, or mental health"
+    1: "Mentions only one relevant area without usable evidence"
+    2: "Adjacent digital health or AI evidence with limited mental health relevance"
+    3: "Relevant to AI-enabled digital mental health but limited detail"
+    4: "Direct evidence on clinical, safety, equity, or implementation outcomes"
+    5: "Decision-critical evidence for committee guidance or practice recommendations"
+
+extraction:
+  fields:
+    - name: "findings"
+      type: "list"
+      description: "Empirical findings relevant to AI-enabled digital mental health"
+    - name: "mechanisms"
+      type: "list"
+      description: "AI functions, behavior-change mechanisms, personalization logic, or monitoring mechanisms"
+    - name: "conditions"
+      type: "list"
+      description: "Mental health conditions, populations, clinical settings, or use cases studied"
+    - name: "brain_regions"
+      type: "list"
+      description: "Legacy field; leave empty unless neurobiological targets are truly discussed"
+    - name: "methodology"
+      type: "string"
+      description: "Study design, sample, comparator, follow-up period, and outcome measures"
+    - name: "clinical_readiness"
+      type: "string"
+      description: "Practical readiness for clinical or committee-facing guidance"
+    - name: "safety_privacy_equity"
+      type: "list"
+      description: "Safety, privacy, bias, equity, adverse-event, or consent considerations"
+    - name: "implementation_notes"
+      type: "list"
+      description: "Workflow, reimbursement, training, governance, or oversight considerations"
+    - name: "supports_primary_question"
+      type: "boolean"
+      description: "Does the evidence directly support or inform the configured research question?"
+    - name: "supports_criticality"
+      type: "boolean"
+      description: "Legacy compatibility field; true only for explicit criticality evidence"
+    - name: "network_effects_described"
+      type: "boolean"
+      description: "Does the evidence describe interactions among patients, clinicians, platforms, and care systems?"
+    - name: "comorbidity_link"
+      type: "string"
+      description: "Relationship among AI use case, mental health population, and clinical context"
+    - name: "key_quote"
+      type: "string"
+      description: "Single most relevant verbatim sentence from the paper text"
+
+synthesis:
+  n_clusters: 6
+  embedding_model: "all-MiniLM-L6-v2"
+  target_word_count: 900
+  audience: "ABCT Technology Committee"
+  tone: "briefing memo"
+  decision_focus:
+    - "What is ready for cautious use or guidance?"
+    - "What requires more validation before recommendation?"
+    - "What safety, privacy, equity, and oversight issues need committee attention?"
+
+committee_brief:
+  audience: "ABCT Technology Committee"
+  meeting_date: "2026-06-30"
+  title: "AI in Digital Mental Health: Evidence Brief"
+  filename: "abct_ai_digital_mental_health_brief.md"
+  include_prisma_traice: true
+  decision_questions:
+    - "Where is evidence strongest for AI-enabled digital mental health?"
+    - "Which use cases are not yet ready for clinical endorsement?"
+    - "What governance, safety, privacy, and equity guardrails should ABCT discuss?"
+
+natural_language_question: >
+  What should the ABCT Technology Committee know about the evidence,
+  limitations, safety, privacy, equity, and clinical readiness of AI-enabled
+  digital mental health tools before the June 30, 2026 meeting?
+
+query_families:
+  - name: "AI chatbots and conversational agents"
+    semantic_terms:
+      - "digital mental health"
+      - "chatbot"
+      - "conversational agent"
+      - "large language model"
+      - "psychotherapy"
+  - name: "Personalization and clinical decision support"
+    semantic_terms:
+      - "machine learning"
+      - "adaptive intervention"
+      - "clinical decision support"
+      - "mental health treatment"
+  - name: "Risk monitoring and digital phenotyping"
+    semantic_terms:
+      - "digital phenotyping"
+      - "passive sensing"
+      - "suicide risk prediction"
+      - "symptom monitoring"
+  - name: "Implementation ethics and equity"
+    semantic_terms:
+      - "algorithmic bias"
+      - "privacy"
+      - "human oversight"
+      - "digital health implementation"
+
+defaults:
+  per_source_limit: 75
+
+axes:
+  - id: clinical_utility
+    display_name: "Clinical utility"
+    description_for_prompt: >
+      Does the paper report clinically meaningful outcomes, assessment
+      accuracy, engagement, access, or care-process improvements?
+  - id: evidence_quality
+    display_name: "Evidence quality"
+    description_for_prompt: >
+      Does the paper use a design that supports committee decisions, such as
+      randomized, prospective, externally validated, or implementation-focused evidence?
+  - id: safety_privacy_equity
+    display_name: "Safety privacy equity"
+    description_for_prompt: >
+      Does the paper substantively address adverse events, crisis handling,
+      privacy, consent, bias, fairness, or differential access?
+  - id: implementation_readiness
+    display_name: "Implementation readiness"
+    description_for_prompt: >
+      Does the paper describe clinician oversight, workflow fit, training,
+      governance, reimbursement, or deployment constraints?
+  - id: committee_actionability
+    display_name: "Committee actionability"
+    description_for_prompt: >
+      Does the evidence directly inform recommendations, guardrails, or agenda
+      items for the ABCT Technology Committee?
+  - id: domain_context
+    display_name: "Digital mental health context"
+    description_for_prompt: >
+      Are AI and digital mental health terms used in the intended clinical,
+      behavioral health, or implementation context?
+
+graph_analysis:
+  conditions:
+    "Depression":
+      - "\\bdepression\\b"
+      - "\\bdepressive\\b"
+      - "\\bMDD\\b"
+    "Anxiety":
+      - "\\banxiety\\b"
+      - "\\banxious\\b"
+      - "\\bGAD\\b"
+    "PTSD":
+      - "\\bPTSD\\b"
+      - "\\bpost.traumatic\\b"
+      - "\\btrauma\\b"
+    "Suicide Risk":
+      - "\\bsuicide\\b"
+      - "\\bsuicidal\\b"
+      - "\\bself.harm\\b"
+    "Substance Use":
+      - "\\bsubstance use\\b"
+      - "\\baddiction\\b"
+      - "\\bSUD\\b"
+  functional_networks:
+    "Conversational AI":
+      - "\\bchatbot\\b"
+      - "\\bconversational agent\\b"
+      - "\\blarge language model\\b"
+    "Prediction and Monitoring":
+      - "\\bprediction model\\b"
+      - "\\bdigital phenotyping\\b"
+      - "\\bpassive sensing\\b"
+    "Implementation Governance":
+      - "\\bprivacy\\b"
+      - "\\bbias\\b"
+      - "\\bhuman oversight\\b"
+
+# Info-sheet text for this project (previously the app's built-in default).
+abct_tech_ai_infosheet:
+  audience: ABCT Technology Committee AI Subcommittee
+  meeting_date: '2026-06-22'
+  title: 'AI in Digital Mental Health: Ethical and Practical Guidance'
+  subtitle: Info-sheet starter for the next ABCT Technology Committee installment
+  filename: abct_tech_ai_infosheet.md
+  decision_questions:
+  - What minimum ethical guardrails should accompany AI-enabled digital mental health recommendations?
+  - Which practical use cases are ready for clinician-facing guidance, and which need caution labels?
+  - How should ABCT describe human oversight, crisis escalation, privacy, equity, and transparency expectations?
+  key_messages:
+  - 'Lead with clinical purpose: AI tools should support assessment, access, engagement, or care coordination rather than replace professional judgment.'
+  - Require human oversight for high-risk moments, including crisis detection, treatment changes, diagnosis, and vulnerable populations.
+  - Treat privacy, informed consent, data minimization, bias monitoring, and transparency as implementation requirements, not optional extras.
+  - Separate evidence-backed uses from speculative uses so the committee can offer practical guidance without over-endorsing immature tools.
+  practical_guidance:
+  - Ask whether the tool has population-relevant evidence, a safety escalation path, and clear limits on what it can and cannot do.
+  - Prefer narrow, supervised workflows over autonomous clinical decision-making.
+  - Document who reviews AI output, how patients are informed, and how errors or adverse events are handled.
+  - Flag equity risks when training data, access requirements, language support, or disability accommodations are unclear.

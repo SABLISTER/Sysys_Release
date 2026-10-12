@@ -1,0 +1,183 @@
+# Hard mode template - Autism E/I Balance
+#
+# Archived current-schema version of the prior active hard-mode autism/E-I
+# review config.
+
+name: "asd-ei-imbalance"
+description: >
+  How does excitatory/inhibitory (E/I) imbalance in autism spectrum disorder
+  affect neural criticality and network dynamics, and how does this relate to
+  co-occurring conditions?
+
+natural_language_question: ""
+
+search:
+  base_terms:
+    - "autism"
+    - "ASD"
+    - "autism spectrum"
+    - "autism spectrum disorder"
+  domains:
+    - name: "E/I imbalance + criticality"
+      terms:
+        - "excitatory inhibitory"
+        - "E/I imbalance"
+        - "excitation inhibition balance"
+        - "neural criticality"
+        - "GABAergic"
+    - name: "Network topology + white matter"
+      terms:
+        - "white matter"
+        - "structural connectivity"
+        - "connectome"
+        - "diffusion tensor"
+      require_also:
+        - "network"
+        - "topology"
+        - "tract"
+    - name: "Comorbidity cascade"
+      terms:
+        - "comorbid"
+        - "co-occurring"
+        - "cooccurring"
+      require_also:
+        - "ADHD"
+        - "anxiety"
+        - "OCD"
+        - "sensory processing"
+        - "executive function"
+        - "epilepsy"
+    - name: "Criticality theory"
+      terms:
+        - "criticality"
+        - "critical brain"
+        - "edge of chaos"
+        - "power law"
+        - "scale-free"
+      require_also:
+        - "neurodevelopmental"
+    - name: "Transdiagnostic / dimensional"
+      terms:
+        - "transdiagnostic"
+        - "dimensional"
+        - "network neuroscience"
+      require_also:
+        - "network"
+        - "circuit"
+
+relevance:
+  threshold: 3
+  research_question: >
+    How does excitatory/inhibitory (E/I) imbalance in autism spectrum disorder
+    affect neural criticality and network dynamics, and how does this relate to
+    co-occurring conditions through white matter tract topology?
+  rubric:
+    0: "Completely irrelevant to the research question"
+    1: "Tangentially related"
+    2: "Somewhat related"
+    3: "Moderately relevant"
+    4: "Highly relevant to E/I, criticality, or network dynamics in ASD"
+    5: "Essential evidence for E/I, criticality, comorbidity, and network topology"
+
+query_families: []
+
+defaults:
+  per_source_limit: 500
+
+cheap_triage:
+  enabled: true
+  use_sentence_transformers: true
+  embedding_model: null
+  semantic_weight: 0.45
+  tfidf_weight: 0.35
+  token_overlap_weight: 0.15
+  retrieval_hit_weight: 0.05
+  high_threshold: 0.50
+  medium_threshold: 0.28
+  pass3_include_bands:
+    - high
+    - medium
+  pass3_low_band_min: 5
+  pass3_low_band_max: 25
+  pass3_low_band_fraction: 0.10
+  pass3_random_seed: 13
+
+full_text:
+  enabled: true
+  prefer_for_cheap_triage: true
+  prefer_for_pass3: true
+  keep_only_full_text: true
+  triage_max_chars: 20000
+  score_max_chars: null
+
+axes:
+  - id: axis_a
+    display_name: "E/I mechanism relevance"
+    description_for_prompt: >
+      Does the paper substantively address excitatory/inhibitory balance,
+      GABAergic/glutamatergic mechanisms, or related neural mechanisms?
+  - id: axis_b
+    display_name: "Criticality and network dynamics"
+    description_for_prompt: >
+      Does the paper substantively address criticality, dynamics, circuits, or
+      systems-level neural behavior?
+  - id: axis_c
+    display_name: "Structural connectivity"
+    description_for_prompt: >
+      Does the paper address white matter, anatomical connectivity, tract
+      topology, or connectome structure?
+  - id: axis_d
+    display_name: "Co-occurring conditions"
+    description_for_prompt: >
+      Does the paper address co-occurring conditions, transdiagnostic overlap,
+      or multi-disorder framing where relevant?
+  - id: integration
+    display_name: "Cross-domain integration"
+    description_for_prompt: >
+      Does the paper genuinely connect multiple themes?
+  - id: domain_context
+    display_name: "Intended scientific context"
+    description_for_prompt: >
+      Are the key terms used in the correct autism/neuroscience sense?
+
+overlap_rules:
+  axis_score_threshold: 0.35
+  axis_ids_for_overlap:
+    - axis_a
+    - axis_b
+    - axis_c
+    - axis_d
+
+tier_rules:
+  tier1_min_axes_strong: 3
+  axis_strong_threshold: 0.55
+  tier1_min_integration: 0.5
+  tier1_min_confidence: 0.45
+  tier2_min_confidence: 0.3
+
+evidence_types:
+  - empirical
+  - review
+  - theory
+  - computational
+
+stopping:
+  max_retrieval_rounds: 12
+  min_new_reviewed_relevant_per_round: 1
+
+seeds:
+  min_human_axes_for_bridge_seed: 3
+  require_reviewer_relevant: true
+
+dive:
+  citation_relation_limit: 20
+  max_seed_papers: 15
+
+graph:
+  top_keyword_suggestions: 12
+  min_reviewed_for_graph: 5
+
+llm_scoring:
+  abstract_max_chars: 8960
+  max_output_tokens: 32000
+  use_reasoning: false

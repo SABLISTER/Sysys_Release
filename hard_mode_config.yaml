@@ -1,0 +1,202 @@
+# Sysys Hard Mode Configuration - Autism E/I Balance
+#
+# Mirrors research_config.yaml for hard mode (LEAD-style iterative review).
+# Hard mode derives query_families from search.domains when query_families is
+# empty, so the active review only needs one canonical search definition.
+
+name: "asd-ei-imbalance"
+description: >
+  How does excitatory/inhibitory (E/I) imbalance in autism spectrum disorder
+  affect neural criticality and network dynamics, and how does this relate to
+  co-occurring conditions?
+
+natural_language_question: ""
+derive_query_families_from_search: true
+
+search:
+  base_terms:
+    - "autism"
+    - "ASD"
+    - "autism spectrum"
+    - "autism spectrum disorder"
+  domains:
+    - name: "E/I imbalance + criticality"
+      terms:
+        - "excitatory inhibitory"
+        - "E/I imbalance"
+        - "excitation inhibition balance"
+        - "neural criticality"
+        - "GABAergic"
+        - "glutamate GABA"
+    - name: "Network topology + white matter"
+      terms:
+        - "white matter"
+        - "structural connectivity"
+        - "connectome"
+        - "diffusion tensor"
+      require_also:
+        - "network"
+        - "topology"
+        - "tract"
+    - name: "Comorbidity cascade"
+      terms:
+        - "comorbid"
+        - "co-occurring"
+        - "cooccurring"
+      require_also:
+        - "ADHD"
+        - "anxiety"
+        - "OCD"
+        - "sensory processing"
+        - "executive function"
+        - "epilepsy"
+        - "Fragile X"
+        - "Rett syndrome"
+    - name: "Criticality theory"
+      terms:
+        - "criticality"
+        - "critical brain"
+        - "edge of chaos"
+        - "power law"
+        - "scale-free"
+        - "network flexibility"
+      require_also:
+        - "neurodevelopmental"
+    - name: "Transdiagnostic / dimensional"
+      terms:
+        - "transdiagnostic"
+        - "dimensional"
+        - "network neuroscience"
+      require_also:
+        - "network"
+        - "circuit"
+
+relevance:
+  threshold: 3
+  research_question: >
+    How does excitatory/inhibitory (E/I) imbalance in autism spectrum disorder
+    affect neural criticality and network dynamics, and how does this relate to
+    co-occurring conditions through white matter tract topology?
+  rubric:
+    0: "Completely irrelevant to the research question"
+    1: "Tangentially related to autism or neurodevelopment"
+    2: "Addresses autism or E/I balance but not both"
+    3: "Directly addresses E/I balance, criticality, or network effects in ASD"
+    4: "Highly relevant — E/I imbalance, criticality, or comorbidity cascade in ASD"
+    5: "Essential evidence for the configured ASD E/I imbalance question"
+
+query_families: []
+
+defaults:
+  per_source_limit: 100
+
+cheap_triage:
+  enabled: true
+  use_sentence_transformers: true
+  embedding_model: null
+  semantic_weight: 0.45
+  tfidf_weight: 0.35
+  token_overlap_weight: 0.15
+  retrieval_hit_weight: 0.05
+  high_threshold: 0.50
+  medium_threshold: 0.28
+  pass3_include_bands:
+    - high
+    - medium
+  pass3_low_band_min: 5
+  pass3_low_band_max: 25
+  pass3_low_band_fraction: 0.10
+  pass3_random_seed: 13
+  compare_embedding_model: null
+  compare_subset_size: 100
+  compare_random_seed: 13
+
+full_text:
+  enabled: true
+  prefer_for_cheap_triage: true
+  prefer_for_pass3: true
+  keep_only_full_text: false
+  triage_max_chars: 20000
+  score_max_chars: null
+
+axes:
+  - id: ei_imbalance
+    display_name: "E/I imbalance relevance"
+    description_for_prompt: >
+      Does the paper substantively address excitatory/inhibitory imbalance,
+      GABAergic dysfunction, glutamate/GABA ratio, or related mechanisms in ASD?
+  - id: asd_population
+    display_name: "ASD or syndromic autism population"
+    description_for_prompt: >
+      Does the paper study autism spectrum disorder, or a syndromic condition
+      with strong ASD overlap (Fragile X, Rett syndrome, tuberous sclerosis)?
+  - id: criticality_network
+    display_name: "Neural criticality or network effects"
+    description_for_prompt: >
+      Does the paper address neural criticality, network topology, white matter
+      connectivity, power-law dynamics, or related network-level phenomena?
+  - id: comorbidity_link
+    display_name: "Comorbidity or cascade link"
+    description_for_prompt: >
+      Does the paper examine co-occurring conditions (ADHD, anxiety, epilepsy,
+      OCD, sensory processing) in relation to ASD neural mechanisms?
+  - id: integration
+    display_name: "Mechanistic integration"
+    description_for_prompt: >
+      Does the paper connect E/I imbalance to downstream functional or
+      behavioral outcomes in autism?
+  - id: domain_context
+    display_name: "ASD neuroscience context"
+    description_for_prompt: >
+      Are key terms used in the intended ASD/neuroscience sense rather than
+      other domains (e.g., electrical engineering, non-clinical contexts)?
+
+overlap_rules:
+  axis_score_threshold: 0.35
+  axis_ids_for_overlap:
+    - ei_imbalance
+    - asd_population
+    - criticality_network
+    - comorbidity_link
+
+tier_rules:
+  tier1_min_axes_strong: 3
+  axis_strong_threshold: 0.55
+  tier1_min_integration: 0.50
+  tier1_min_confidence: 0.45
+  tier2_min_confidence: 0.30
+  # Which configured axis gates tier 1 ("integration" here) and which feeds the
+  # domain_context score. Other domains set these to their own axis IDs.
+  tier1_keystone_axis_id: integration
+  domain_context_axis_id: domain_context
+
+evidence_types:
+  - empirical
+  - review
+  - theory
+  - computational
+
+stopping:
+  max_retrieval_rounds: 12
+  min_new_reviewed_relevant_per_round: 1
+
+seeds:
+  min_human_axes_for_bridge_seed: 3
+  require_reviewer_relevant: true
+
+dive:
+  citation_relation_limit: 20
+  max_seed_papers: 15
+
+graph:
+  top_keyword_suggestions: 12
+  min_reviewed_for_graph: 5
+  # Appended to suggested expansion queries; keeps this ASD config's
+  # suggestions in-domain. Other domains leave it empty or set their own.
+  query_suffix: neuroscience
+
+llm_scoring:
+  abstract_max_chars: 8960
+  title_max_chars: null
+  max_output_tokens: 4096
+  use_reasoning: false

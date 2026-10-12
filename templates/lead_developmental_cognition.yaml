@@ -1,0 +1,199 @@
+# Sysys Research Configuration - LEAD Developmental Cognition Template
+#
+# Template version of the active LEAD-style developmental cognition starter.
+
+name: "lead-developmental-cognition"
+description: >
+  LEAD-style developmental cognition review of how cognitive processes,
+  learning mechanisms, developmental context, and child outcomes relate
+  across infancy, childhood, and adolescence.
+
+hypothesis_text: >
+  Cognitive processes, learning mechanisms, and developmental context jointly
+  shape child cognitive outcomes across infancy, childhood, and adolescence.
+
+co_occurring_conditions:
+  - executive function
+  - language development
+  - learning and memory
+  - attention
+  - social cognition
+  - developmental context
+
+alignment_dimension: >
+  Alignment between developmental cognitive constructs, child/adolescent
+  populations, study design, and contextual moderators.
+
+search:
+  base_terms:
+    - "child development"
+    - "developmental cognition"
+    - "cognitive development"
+    - "early childhood"
+    - "children"
+    - "adolescents"
+  domains:
+    - name: "Executive function and self-regulation"
+      terms:
+        - "executive function"
+        - "self-regulation"
+        - "inhibitory control"
+        - "working memory"
+        - "cognitive flexibility"
+    - name: "Language and communication development"
+      terms:
+        - "language development"
+        - "vocabulary"
+        - "phonological awareness"
+        - "communication"
+        - "speech development"
+    - name: "Learning and memory"
+      terms:
+        - "learning"
+        - "memory"
+        - "statistical learning"
+        - "concept learning"
+        - "school readiness"
+    - name: "Attention and perception"
+      terms:
+        - "attention"
+        - "visual attention"
+        - "auditory attention"
+        - "perceptual development"
+        - "attention control"
+    - name: "Social cognition"
+      terms:
+        - "social cognition"
+        - "theory of mind"
+        - "emotion understanding"
+        - "joint attention"
+        - "mentalizing"
+    - name: "Developmental context"
+      terms:
+        - "longitudinal"
+        - "parenting"
+        - "home learning environment"
+        - "socioeconomic status"
+        - "early adversity"
+
+relevance:
+  threshold: 3
+  research_question: >
+    What does the empirical literature show about how cognitive processes,
+    learning mechanisms, and developmental context shape child cognitive
+    outcomes across infancy, childhood, and adolescence?
+
+extraction:
+  fields:
+    - name: "findings"
+      type: "list"
+      description: "Empirical findings from the study"
+    - name: "mechanisms"
+      type: "list"
+      description: "Developmental, cognitive, learning, or contextual mechanisms discussed"
+    - name: "conditions"
+      type: "list"
+      description: "Populations, developmental groups, constructs, or contextual factors studied"
+    - name: "brain_regions"
+      type: "list"
+      description: "Brain regions, networks, or cognitive systems mentioned when relevant"
+    - name: "methodology"
+      type: "string"
+      description: "Brief methodology summary"
+    - name: "supports_primary_question"
+      type: "boolean"
+      description: "Does the evidence directly support or inform the configured research question?"
+    - name: "supports_criticality"
+      type: "boolean"
+      description: "Legacy compatibility field; true only for explicit criticality evidence"
+    - name: "network_effects_described"
+      type: "boolean"
+      description: "Does the evidence describe relationships among systems, networks, or interacting constructs?"
+    - name: "comorbidity_link"
+      type: "string"
+      description: "Relationship among primary topic, populations, constructs, or contextual factors"
+    - name: "key_quote"
+      type: "string"
+      description: "Single most relevant verbatim sentence from the paper text"
+
+synthesis:
+  n_clusters: 8
+  embedding_model: "all-MiniLM-L6-v2"
+
+axes:
+  - id: cognitive_construct
+    display_name: "Cognitive construct relevance"
+    description_for_prompt: >
+      Does the paper substantively address a cognitive construct central to the
+      review, such as executive function, language, learning, attention, memory,
+      or social cognition?
+  - id: developmental_population
+    display_name: "Developmental population"
+    description_for_prompt: >
+      Does the paper study infants, children, adolescents, or developmental
+      transitions rather than only adult cognition?
+  - id: developmental_design
+    display_name: "Developmental design"
+    description_for_prompt: >
+      Does the paper use a design that supports developmental interpretation?
+  - id: contextual_moderators
+    display_name: "Contextual moderators"
+    description_for_prompt: >
+      Does the paper evaluate contextual factors such as parenting, schooling,
+      home learning environment, socioeconomic status, adversity, culture, or
+      intervention setting?
+  - id: integration
+    display_name: "Cross-domain integration"
+    description_for_prompt: >
+      Does the paper genuinely connect cognitive processes, developmental
+      context, and child outcomes?
+  - id: domain_context
+    display_name: "Developmental-cognition context"
+    description_for_prompt: >
+      Are the key terms used in the intended developmental cognition sense?
+
+graph_analysis:
+  conditions:
+    "Executive Function":
+      - "\\bexecutive function\\b"
+      - "\\binhibitory control\\b"
+      - "\\bworking memory\\b"
+    "Language Development":
+      - "\\blanguage development\\b"
+      - "\\bvocabulary\\b"
+      - "\\bphonological awareness\\b"
+    "Learning and Memory":
+      - "\\blearning\\b"
+      - "\\bmemory\\b"
+      - "\\bstatistical learning\\b"
+    "Attention":
+      - "\\battention\\b"
+      - "\\battention control\\b"
+    "Social Cognition":
+      - "\\bsocial cognition\\b"
+      - "\\btheory of mind\\b"
+      - "\\bjoint attention\\b"
+    "Developmental Context":
+      - "\\bparenting\\b"
+      - "\\bhome learning environment\\b"
+      - "\\bsocioeconomic status\\b"
+  structural_regions:
+    "Prefrontal Cortex":
+      - "\\bPFC\\b"
+      - "\\bprefrontal\\b"
+    "Hippocampus":
+      - "\\bhippocampus\\b"
+      - "\\bhippocampal\\b"
+    "Temporal Cortex":
+      - "\\btemporal cortex\\b"
+      - "\\btemporal lobe\\b"
+  functional_networks:
+    "Default Mode":
+      - "\\bDMN\\b"
+      - "\\bdefault mode\\b"
+    "Executive Control":
+      - "\\bexecutive control\\b"
+      - "\\bfrontoparietal\\b"
+    "Attention":
+      - "\\battention network\\b"
+      - "\\bdorsal attention\\b"

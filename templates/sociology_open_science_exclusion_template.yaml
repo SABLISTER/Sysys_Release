@@ -1,0 +1,162 @@
+# Sysys Research Configuration - Sociology Open Science Exclusion Template
+#
+# Current-schema sociology configuration for evaluating whether open science
+# adoption reproduces exclusionary practices in research.
+
+name: "open-science-exclusion"
+description: >
+  Sociology-focused review of whether Open Science Framework and open science
+  adoption reproduce historical exclusionary practices in academic knowledge
+  production.
+
+hypothesis_text: >
+  The adoption of Open Science Framework and related open science infrastructures
+  may reproduce historical exclusionary practices by privileging already
+  resourced institutions, dominant methodological norms, English-language
+  publication cultures, and researchers with greater technical, financial, and
+  institutional support.
+
+co_occurring_conditions:
+  - institutional gatekeeping
+  - epistemic injustice
+  - coloniality of knowledge
+  - digital divide
+  - resource inequality
+  - prestige stratification
+  - language exclusion
+  - methodological standardization
+  - Global South marginalization
+  - historically excluded scholars
+  - participatory justice
+  - research infrastructure access
+
+alignment_dimension: "Inclusive versus exclusionary open science adoption"
+
+search:
+  base_terms:
+    - "open science"
+    - "Open Science Framework"
+    - "OSF"
+    - "open research"
+    - "research transparency"
+    - "open scholarship"
+  domains:
+    - name: "Exclusion and gatekeeping"
+      terms:
+        - "exclusion"
+        - "gatekeeping"
+        - "inequality"
+        - "marginalization"
+        - "stratification"
+    - name: "Epistemic and historical exclusion"
+      terms:
+        - "epistemic injustice"
+        - "coloniality"
+        - "knowledge production"
+        - "historical exclusion"
+        - "standpoint epistemology"
+    - name: "Infrastructure and resource access"
+      terms:
+        - "digital divide"
+        - "technical capacity"
+        - "infrastructure access"
+        - "resource inequality"
+        - "low-resource institutions"
+    - name: "Global South and language"
+      terms:
+        - "Global South"
+        - "non-Western"
+        - "English-language dominance"
+        - "language barriers"
+        - "peripheral scholarship"
+
+relevance:
+  threshold: 3
+  research_question: >
+    Does adoption of open science infrastructure reproduce exclusionary
+    patterns in academic knowledge production, especially for less-resourced
+    institutions, historically excluded researchers, and Global South scholars?
+
+extraction:
+  fields:
+    - name: "findings"
+      type: "list"
+      description: "Empirical or theoretical findings from the study"
+    - name: "mechanisms"
+      type: "list"
+      description: "Mechanisms of inclusion, exclusion, gatekeeping, or resource stratification"
+    - name: "conditions"
+      type: "list"
+      description: "Institutions, populations, structural factors, or scholarly contexts studied"
+    - name: "brain_regions"
+      type: "list"
+      description: "Legacy field; leave empty unless the paper genuinely discusses spatial systems"
+    - name: "methodology"
+      type: "string"
+      description: "Brief methodology summary"
+    - name: "supports_primary_question"
+      type: "boolean"
+      description: "Does the evidence directly support or inform the configured research question?"
+    - name: "supports_criticality"
+      type: "boolean"
+      description: "Legacy compatibility field; true only for explicit criticality evidence"
+    - name: "network_effects_described"
+      type: "boolean"
+      description: "Does the evidence describe institutional, social, or infrastructure networks?"
+    - name: "comorbidity_link"
+      type: "string"
+      description: "Relationship among open science, exclusionary practice, and affected groups"
+    - name: "key_quote"
+      type: "string"
+      description: "Single most relevant verbatim sentence from the paper text"
+
+synthesis:
+  n_clusters: 8
+  embedding_model: "all-MiniLM-L6-v2"
+
+graph_analysis:
+  conditions:
+    "Open Science Adoption":
+      - "\\bopen science\\b"
+      - "\\bOpen Science Framework\\b"
+      - "\\bOSF\\b"
+      - "\\bopen scholarship\\b"
+      - "\\bopen research\\b"
+    "Exclusionary Practices":
+      - "\\bexclusion\\w*\\b"
+      - "\\bgatekeeping\\b"
+      - "\\bbarrier\\w*\\b"
+      - "\\bmarginali[sz]ation\\b"
+    "Epistemic Inequality":
+      - "\\bepistemic injustice\\b"
+      - "\\bepistemic exclusion\\b"
+      - "\\bknowledge production\\b"
+      - "\\bcredibility deficit\\b"
+    "Resource Inequality":
+      - "\\bresource inequalit\\w*\\b"
+      - "\\bfunding inequalit\\w*\\b"
+      - "\\btechnical capacit\\w*\\b"
+      - "\\binfrastructure access\\b"
+    "Global South and Peripheral Scholarship":
+      - "\\bGlobal South\\b"
+      - "\\bperipheral scholar\\w*\\b"
+      - "\\bnon-Western\\b"
+      - "\\bEurocentr\\w*\\b"
+  structural_regions:
+    "Academic Institutions":
+      - "\\buniversit\\w*\\b"
+      - "\\bresearch institution\\w*\\b"
+      - "\\blaborator\\w*\\b"
+    "Publication Venues":
+      - "\\bjournal\\w*\\b"
+      - "\\bconference\\w*\\b"
+      - "\\bpublication\\w*\\b"
+  functional_networks:
+    "Research Infrastructure":
+      - "\\binfrastructure\\b"
+      - "\\brepository\\b"
+      - "\\bplatform\\b"
+    "Knowledge Production Network":
+      - "\\bcollaboration network\\b"
+      - "\\bscholarly network\\b"
+      - "\\bcitation network\\b"
